@@ -1,6 +1,10 @@
 import streamlit as st
 
-st.title("Round 3 : Cipher Challenge")
+#institution logo
+st.image("logo.jpeg", width=100)
+
+st.title("Mission 3:")
+st.title("Cipher Challenge")
 
 teams = {
     "alpha": {  
@@ -64,15 +68,15 @@ team_codes = {
 }
 
 # ===================== APP FLOW =====================
-st.subheader("Enter Your Secret Agent Code (5 Letters)")
-team_code = st.text_input("Agent Code", max_chars=5, type="password").lower()
+st.subheader("Passkey (5 Letters)")
+team_code = st.text_input("", max_chars=5, type="password").lower()
 
 if team_code:
     try:
         if len(team_code) != 5 or not team_code.isalpha():
-            st.error("❌ Agent code must be exactly 5 letters!")
+            st.error("Passkey must be exactly 5 letters!")
         elif team_code not in team_codes:
-            st.error("❌ Invalid agent code! Contact mission control.")
+            st.error("Invalid Passkey!")
         else:
             team_key = team_codes[team_code]
             team_info = teams[team_key]
@@ -86,7 +90,7 @@ if team_code:
 
             # --- Step 3: Decoded Sentence Submission ---
             st.subheader("Submit Decoded Intelligence Report")
-            st.info("Decrypt the message to get a jumbled version, then unjumble the words to reveal the original intelligence.")
+            st.info("Decrypt the message to get a jumbled version, then un jumble the words to reveal the original intelligence.")
             user_decoded = st.text_input("Decoded Message").lower()
 
             if st.button("Verify Intelligence"):
@@ -94,9 +98,30 @@ if team_code:
                 normalized_original = team_info["decoded_message"].replace(" ", "").lower()
                 if normalized_user == normalized_original:
                     st.balloons()
-                    st.success(f"🎉 Mission Success, {team_info['name']} Operatives! You are now onboarded to the Agency!")
+                    st.success(f"Mission Success, {team_info['name']} Operatives! You are now onboarded to the Agency!")
                 else:
-                    st.info("❌ Intelligence mismatch. Reattempt decryption and un jumbling.")
+                    st.info("Intelligence mismatch. Reattempt decryption and un jumbling.")
 
     except Exception as e:
         st.error(f"⚠️ Unexpected mission error: {e}")
+
+# --- Footer ---
+footer = """
+<style>
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #f1f1f1;
+    color: #333;
+    text-align: center;
+    padding: 8px;
+    font-size: 14px;
+}
+</style>
+<div class="footer">
+    Limited Access
+</div>
+"""
+st.markdown(footer, unsafe_allow_html=True)
