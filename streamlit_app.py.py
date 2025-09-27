@@ -86,8 +86,8 @@ if team_code:
             st.subheader("Intercepted Encrypted Transmission")
             st.subheader(f"**Cipher Used**: `{team_info['cipher_name']}`")
             st.subheader(f"**Key**: `{team_info['Key']}`")
-            st.subheader(f"**Encrypted Message**: `{team_info['encrypted_sentence']}`")
-
+            # st.subheader(f"**Encrypted Message**: `{team_info['encrypted_sentence']}`")
+            st.markdown(f"**Encrypted Message**: Find it in the document shared!")
             # --- Step 3: Decoded Sentence Submission ---
             st.subheader("Submit Decoded Intelligence Report")
             st.info("Decrypt the message to get a jumbled version, then un jumble the words to reveal the original intelligence.")
